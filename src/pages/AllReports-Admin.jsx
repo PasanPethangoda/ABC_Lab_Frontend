@@ -10,7 +10,8 @@ const AllReportsAdmin = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [searchedFiles, setSearchedFiles] = useState([]);
   const [downloadedFile, setDownloadedFile] = useState(null);
- 
+  const [searchNIC, setSearchNIC] = useState('');
+  
   
   
   useEffect(() => {
@@ -28,6 +29,15 @@ const AllReportsAdmin = () => {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchNIC(e.target.value);
+    // Filter files based on the entered patient NIC
+    const filteredFiles = files.filter((file) =>
+      file.patientNIC.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setSearchedFiles(filteredFiles);
   };
 
 //   const handleUpload = async () => {
@@ -134,6 +144,19 @@ const AllReportsAdmin = () => {
       {/* Display Files Table */}
       <div className="container mt-5">
         <h3 className="text-center pb-3"><i>All Patient Reports</i></h3>
+
+        {/* Search input */}
+      <div className="mb-3" style={{ width: '30%' }}>
+        <input
+          type="text"
+          className="form-control border border-primary"
+          placeholder="Search"
+          value={searchNIC}
+          onChange={handleSearchChange}
+        />
+      </div>
+      {/* Search input */}
+
         <table className="table table-primary border shadow mx-auto" style={{ width: '100%' }}>
           <thead class="thead-dark">
             <tr class="text-center">
@@ -144,7 +167,7 @@ const AllReportsAdmin = () => {
             </tr>
           </thead>
           <tbody class="text-center">
-            {files.map((file) => (
+            {(searchNIC ? searchedFiles : files).map((file) => (
               <tr key={file._id}>
                 <td>{file.fileName}</td>
                 <td>{file.patientName}</td>
