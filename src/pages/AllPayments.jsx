@@ -4,6 +4,7 @@ import AdminNav from '../compontents/AdminNav';
 
 const PaymentList = () => {
   const [payments, setPayments] = useState([]);
+  const [searchNIC, setSearchNIC] = useState('');
 
   useEffect(() => {
     // Fetch all payment data when the component mounts
@@ -16,12 +17,30 @@ const PaymentList = () => {
       });
   }, []); // Empty dependency array ensures the effect runs only once
 
+  const handleSearchChange = (event) => {
+    setSearchNIC(event.target.value);
+  };
+
+  const filteredPayments = payments.filter(payment =>
+    payment.patientNIC.toLowerCase().includes(searchNIC.toLowerCase())
+  );
+
+
   return (
     <div>
         <AdminNav/>
        
      <div class="row g-0 p-5">
       <h3 class="text-center pb-3"><i>All Payment Details</i></h3>
+      <div className="mb-3" style={{ width: '30%' }}>
+          <input
+            type="text"
+            className="form-control border border-dark"
+            placeholder="Search"
+            value={searchNIC}
+            onChange={handleSearchChange}
+          />
+        </div>
       <table className="table table-primary border shadow mx-auto" style={{ width: '100%' }}>
         <thead className="thead-dark">
           <tr className="text-center">
@@ -36,7 +55,7 @@ const PaymentList = () => {
           </tr>
         </thead>
         <tbody className="text-center">
-          {payments.map(payment => (
+         {filteredPayments.map(payment => (
             <tr key={payment.id}>
               <td>{payment.name}</td>
               <td>{payment.patientNIC}</td>
