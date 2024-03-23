@@ -148,8 +148,8 @@ const FileManagement = () => {
       <div className="mb-3" style={{ width: '30%' }}>
         <input
           type="text"
-          className="form-control border border-success"
-          placeholder="Search"
+          className="form-control border border-warning"
+          placeholder="Search by Patient NIC"
           value={searchNIC}
           onChange={handleSearchChange}
         />

@@ -150,7 +150,7 @@ const AllReportsAdmin = () => {
         <input
           type="text"
           className="form-control border border-primary"
-          placeholder="Search"
+          placeholder="Search by Patient NIC"
           value={searchNIC}
           onChange={handleSearchChange}
         />

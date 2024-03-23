@@ -149,7 +149,7 @@ const AllReportsDoctor = () => {
         <input
           type="text"
           className="form-control border border-success"
-          placeholder="Search"
+          placeholder="Search by Patient NIC"
           value={searchNIC}
           onChange={handleSearchChange}
         />
@@ -187,7 +187,7 @@ const AllReportsDoctor = () => {
         <div className="row justify-content-center pt-3">
           <div className="col-lg-6">
             <form className="border shadow p-3">
-              <h3 className="text-center pb-2">Update Test Report</h3>
+              <h3 className="text-center pb-2"><i>Update Test Report</i></h3>
 
               <div className="form-group">
                 <label>Patient Name:</label>

@@ -36,7 +36,7 @@ const PaymentList = () => {
           <input
             type="text"
             className="form-control border border-dark"
-            placeholder="Search"
+            placeholder="Search by Patient NIC"
             value={searchNIC}
             onChange={handleSearchChange}
           />
