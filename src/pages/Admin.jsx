@@ -140,7 +140,7 @@ useEffect(() => {
         tokenNo: tokenNo
       });
 
-      alert("Appoitment Successfully");
+      alert("Appoitment Successfully !!!");
       set_AId("");
       set_ANic("");
       set_AName("");
